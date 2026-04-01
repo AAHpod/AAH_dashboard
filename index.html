@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accountants After Hours | Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Base ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #000000;
+      --yellow:   #FFE500;
+      --pink:     #FFD5D0;
+      --lilac:    #C9A0DC;
+      --white:    #FFFFFF;
+      --off-white:#FFF9F8;
+      --gray-100: #F7F7F7;
+      --gray-200: #E8E8E8;
+      --gray-500: #888888;
+      --gray-800: #333333;
+      --green:    #22C55E;
+      --red:      #EF4444;
+
+      --font: 'Montserrat', Arial, Helvetica, sans-serif;
+      --radius: 16px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow-hover: 0 4px 24px rgba(0,0,0,0.10);
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--off-white);
+      color: var(--gray-800);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* ── Header ────────────────────────────────────────────── */
+    .header {
+      background: var(--black);
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header-logo-img {
+      height: 50px;
+      width: auto;
+    }
+
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-date {
+      color: var(--gray-500);
+      font-size: 13px;
+    }
+
+    .header-badge {
+      background: var(--yellow);
+      color: var(--black);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* ── Layout ────────────────────────────────────────────── */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* ── Summary Row ───────────────────────────────────────── */
+    .summary-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .summary-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.2s, transform 0.2s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .summary-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .summary-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+
+    .summary-card.youtube::before    { background: #FF0000; }
+    .summary-card.website::before    { background: var(--lilac); }
+    .summary-card.hubspot::before    { background: #FF7A59; }
+    .summary-card.podcast::before    { background: #1DB954; }
+    .summary-card.instagram::before  { background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF); }
+    .summary-card.facebook::before   { background: #1877F2; }
+    .summary-card.linkedin::before   { background: #0A66C2; }
+
+    .summary-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .summary-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gray-500);
+      margin-bottom: 4px;
+    }
+
+    .summary-value {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--black);
+      line-height: 1.1;
+    }
+
+    .summary-growth {
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .growth-up { color: var(--green); }
+    .growth-down { color: var(--red); }
+    .growth-neutral { color: var(--gray-500); }
+
+    /* ── Summary Group Labels ─────────────────────────────── */
+    .summary-group-label {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gray-500);
+      margin-bottom: 8px;
+      padding-left: 4px;
+    }
+
+    .summary-group-label + .summary-row {
+      margin-bottom: 24px;
+    }
+
+    /* ── Section Titles ────────────────────────────────────── */
+    .section-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--black);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--yellow);
+    }
+
+    /* ── Grid Sections ─────────────────────────────────────── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    /* ── Cards ──────────────────────────────────────────────── */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-link {
+      font-size: 12px;
+      color: var(--lilac);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .card-link:hover { text-decoration: underline; }
+
+    /* ── Stat Rows ─────────────────────────────────────────── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .stat-item {
+      padding: 12px 16px;
+      background: var(--gray-100);
+      border-radius: 10px;
+    }
+
+    .stat-item .label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gray-500);
+    }
+
+    .stat-item .value {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--black);
+    }
+
+    /* ── Episode Table ─────────────────────────────────────── */
+    .episode-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .episode-table th {
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gray-500);
+      padding: 8px 12px;
+      border-bottom: 2px solid var(--gray-200);
+    }
+
+    .episode-table td {
+      padding: 12px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .episode-table tr:last-child td { border-bottom: none; }
+
+    .episode-table .ep-title {
+      font-weight: 700;
+      color: var(--black);
+      max-width: 300px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .episode-table .ep-views {
+      font-weight: 800;
+      color: var(--black);
+    }
+
+    /* ── Chart Container ───────────────────────────────────── */
+    .chart-wrap {
+      position: relative;
+      height: 220px;
+    }
+
+    /* ── Empty State ───────────────────────────────────────── */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--gray-500);
+    }
+
+    .empty-state .empty-icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+      opacity: 0.4;
+    }
+
+    .empty-state p {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* ── Social Row ────────────────────────────────────────── */
+    .social-header-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .social-header-icon.yt  { background: #FF0000; }
+    .social-header-icon.web { background: var(--lilac); }
+    .social-header-icon.hs  { background: #FF7A59; }
+    .social-header-icon.pod { background: #1DB954; }
+    .social-header-icon.ig  { background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF); }
+    .social-header-icon.fb  { background: #1877F2; }
+    .social-header-icon.li  { background: #0A66C2; }
+
+    /* ── Footer ────────────────────────────────────────────── */
+    .footer {
+      text-align: center;
+      padding: 40px 20px 24px;
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+
+    .footer a {
+      color: var(--lilac);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    /* ── Pink Banner ───────────────────────────────────────── */
+    .pink-banner {
+      background: var(--pink);
+      padding: 16px 32px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--black);
+    }
+
+    .pink-banner .highlight {
+      background: var(--yellow);
+      padding: 2px 8px;
+      font-weight: 900;
+    }
+
+    /* ── Responsive ────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .summary-row { grid-template-columns: repeat(2, 1fr); }
+      .header { flex-direction: column; gap: 12px; text-align: center; }
+      .stat-grid { grid-template-columns: 1fr; }
+      .container { padding: 20px 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .summary-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-brand">
+      <img src="Logo.png" alt="Accountants After Hours" class="header-logo-img">
+    </div>
+    <div class="header-meta">
+      <span class="header-date" id="reportingMonth"></span>
+      <span class="header-badge" id="lastUpdated"></span>
+    </div>
+  </header>
+
+  <!-- Pink Banner -->
+  <div class="pink-banner">
+    Monthly Performance Dashboard &mdash; <span class="highlight" id="bannerMonth"></span>
+  </div>
+
+  <div class="container">
+
+    <!-- ── Summary Cards ────────────────────────────────── -->
+    <h2 class="section-title">Overall Snapshot</h2>
+    <div class="summary-group-label">Platforms</div>
+    <div class="summary-row" id="summaryPlatforms"></div>
+    <div class="summary-group-label">Socials — Followers</div>
+    <div class="summary-row" id="summarySocials"></div>
+
+    <!-- ── Podcast Stats ────────────────────────────────── -->
+    <h2 class="section-title">Podcast</h2>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="social-header-icon pod">&#9835;</span>
+            Downloads & Subscribers
+          </div>
+        </div>
+        <div class="stat-grid" id="podStats"></div>
+        <div class="chart-wrap"><canvas id="podChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="social-header-icon pod">&#9835;</span>
+            Top Episodes
+          </div>
+        </div>
+        <div id="podEpisodes"></div>
+      </div>
+    </div>
+
+    <!-- ── YouTube Section ──────────────────────────────── -->
+    <h2 class="section-title">YouTube</h2>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="social-header-icon yt">&#9654;</span>
+            Channel Overview
+          </div>
+          <a class="card-link" id="ytLink" href="#" target="_blank">View Channel &rarr;</a>
+        </div>
+        <div class="stat-grid" id="ytStats"></div>
+        <div class="chart-wrap"><canvas id="ytChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="social-header-icon yt">&#9654;</span>
+            Episodes (Long-form)
+          </div>
+        </div>
+        <div id="ytEpisodes"></div>
+      </div>
+    </div>
+    <div class="grid-2" style="margin-top: -16px;">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="social-header-icon yt">&#9654;</span>
+            YouTube Shorts
+          </div>
+        </div>
+        <div id="ytShorts"></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="social-header-icon yt">&#9654;</span>
+            Shorts vs Episodes
+          </div>
+        </div>
+        <div class="stat-grid" id="ytCompare"></div>
+      </div>
+    </div>
+
+    <!-- ── Website & HubSpot ────────────────────────────── -->
+    <h2 class="section-title">Website & Email</h2>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="social-header-icon web">W</span>
+            Wix Website
+          </div>
+          <a class="card-link" href="https://www.accountantsafterhours.com.au" target="_blank">Visit Site &rarr;</a>
+        </div>
+        <div class="stat-grid" id="webStats"></div>
+        <div class="chart-wrap"><canvas id="webChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="social-header-icon hs">H</span>
+            HubSpot Email
+          </div>
+        </div>
+        <div class="stat-grid" id="hsStats"></div>
+        <div class="chart-wrap"><canvas id="hsChart"></canvas></div>
+      </div>
+    </div>
+
+    <!-- ── Social Media ─────────────────────────────────── -->
+    <h2 class="section-title">Social Media — Followers</h2>
+    <div class="grid-3">
+      <!-- Instagram -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="social-header-icon ig">IG</span>
+            Instagram
+          </div>
+          <a class="card-link" id="igLink" href="#" target="_blank">View &rarr;</a>
+        </div>
+        <div class="stat-grid" id="igStats"></div>
+        <div class="chart-wrap"><canvas id="igChart"></canvas></div>
+      </div>
+      <!-- Facebook -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="social-header-icon fb">f</span>
+            Facebook
+          </div>
+          <a class="card-link" id="fbLink" href="#" target="_blank">View &rarr;</a>
+        </div>
+        <div class="stat-grid" id="fbStats"></div>
+        <div class="chart-wrap"><canvas id="fbChart"></canvas></div>
+      </div>
+      <!-- LinkedIn -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="social-header-icon li">in</span>
+            LinkedIn
+          </div>
+          <a class="card-link" id="liLink" href="#" target="_blank">View &rarr;</a>
+        </div>
+        <div class="stat-grid" id="liStats"></div>
+        <div class="chart-wrap"><canvas id="liChart"></canvas></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <a href="https://www.accountantsafterhours.com.au">Accountants After Hours</a>
+    &nbsp;&middot;&nbsp; Dashboard updated <span id="footerDate"></span>
+  </div>
+
+  <script src="data.js?v=5"></script>
+  <script>
+    // ── Helpers ─────────────────────────────────────────────
+    const D = DASHBOARD_DATA;
+    const fmt = (n) => typeof n === 'number' ? n.toLocaleString() : n;
+
+    // ── Fetch live data from API server ─────────────────────
+    async function fetchLiveData() {
+      try {
+        const resp = await fetch('/api/all');
+        if (!resp.ok) throw new Error('API not available');
+        const live = await resp.json();
+
+        // Update YouTube with live data
+        if (live.youtube && !live.youtube.error) {
+          const yt = live.youtube;
+          const episodes = yt.episodes || [];
+          const shorts = yt.shorts || [];
+          D.youtube.subscribers = yt.subscribers;
+          D.youtube.totalViews = yt.totalViews;
+          D.youtube.episodes = episodes;
+
+          // Channel overview stats
+          const epViews = episodes.reduce((s, e) => s + e.views, 0);
+          const shViews = shorts.reduce((s, e) => s + e.views, 0);
+          document.getElementById('ytStats').innerHTML =
+            statBox('Subscribers', yt.subscribers) +
+            statBox('Total Views', yt.totalViews) +
+            statBox('Episodes', episodes.length) +
+            statBox('Shorts', shorts.length);
+
+          // Episodes table (long-form only)
+          document.getElementById('ytEpisodes').innerHTML = episodeTable(episodes);
+
+          // Shorts table
+          document.getElementById('ytShorts').innerHTML = episodeTable(shorts);
+
+          // Comparison stats
+          document.getElementById('ytCompare').innerHTML =
+            statBox('Episode Views', epViews) +
+            statBox('Shorts Views', shViews) +
+            statBox('Avg/Episode', episodes.length ? Math.round(epViews / episodes.length) : 0) +
+            statBox('Avg/Short', shorts.length ? Math.round(shViews / shorts.length) : 0);
+
+          // Update summary card
+          const ytCard = document.querySelector('.summary-card.youtube .summary-value');
+          if (ytCard) ytCard.textContent = fmt(yt.subscribers);
+        }
+
+        // Update HubSpot with live data
+        if (live.hubspot && !live.hubspot.error) {
+          const hs = live.hubspot;
+          D.hubspot.subscribers = hs.subscribers;
+          document.getElementById('hsStats').innerHTML =
+            statBox('Subscribers', hs.subscribers) +
+            statBox('LIVE', '&#9899;');
+          const hsCard = document.querySelector('.summary-card.hubspot .summary-value');
+          if (hsCard) hsCard.textContent = fmt(hs.subscribers);
+        }
+
+        // Update Wix with live data (if available)
+        if (live.wix && !live.wix.error) {
+          const wix = live.wix;
+          if (wix.uniqueVisitors) {
+            document.getElementById('webStats').innerHTML =
+              statBox('Visitors', wix.uniqueVisitors) +
+              statBox('Growth', (D.website.visitorGrowth > 0 ? '+' : '') + D.website.visitorGrowth);
+          }
+        }
+
+        // Update last updated timestamp
+        if (live.lastUpdated) {
+          document.getElementById('lastUpdated').textContent = 'Live ' + live.lastUpdated;
+          document.getElementById('footerDate').textContent = live.lastUpdated;
+        }
+
+        console.log('Live data loaded successfully');
+      } catch (e) {
+        console.log('Using cached data from data.js (API server not running)');
+      }
+    }
+
+    function growthHtml(val) {
+      if (val > 0) return `<div class="summary-growth growth-up">&#9650; +${fmt(val)} this month</div>`;
+      if (val < 0) return `<div class="summary-growth growth-down">&#9660; ${fmt(val)} this month</div>`;
+      return `<div class="summary-growth growth-neutral">&mdash; No change</div>`;
+    }
+
+    function statBox(label, value) {
+      return `<div class="stat-item"><div class="label">${label}</div><div class="value">${fmt(value)}</div></div>`;
+    }
+
+    function emptyState(icon, msg) {
+      return `<div class="empty-state"><div class="empty-icon">${icon}</div><p>${msg}</p></div>`;
+    }
+
+    function episodeTable(episodes, viewsLabel = 'Views', showDate = true) {
+      if (!episodes || episodes.length === 0) {
+        return emptyState('&#128196;', 'No episode data yet. Add episodes to data.js');
+      }
+      let html = `<table class="episode-table"><thead><tr><th>Episode</th><th>${viewsLabel}</th>${showDate ? '<th>Date</th>' : ''}</tr></thead><tbody>`;
+      episodes.forEach(ep => {
+        html += `<tr>
+          <td class="ep-title" title="${ep.title}">${ep.title}</td>
+          <td class="ep-views">${fmt(ep.downloads || ep.views || 0)}</td>
+          ${showDate ? `<td>${ep.publishedDate || '—'}</td>` : ''}
+        </tr>`;
+      });
+      html += `</tbody></table>`;
+      return html;
+    }
+
+    // ── Chart defaults ─────────────────────────────────────
+    Chart.defaults.font.family = "'Montserrat', sans-serif";
+    Chart.defaults.font.weight = 600;
+
+    function makeLineChart(ctx, labels, data, color, label) {
+      return new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label,
+            data,
+            borderColor: color,
+            backgroundColor: color + '18',
+            fill: true,
+            tension: 0.35,
+            pointRadius: 5,
+            pointBackgroundColor: color,
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2,
+            borderWidth: 3,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#000',
+              titleFont: { weight: 700 },
+              padding: 12,
+              cornerRadius: 8,
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { font: { size: 11 } }
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: '#f0f0f0' },
+              ticks: { font: { size: 11 } }
+            }
+          }
+        }
+      });
+    }
+
+    // ── Populate Header ────────────────────────────────────
+    document.getElementById('reportingMonth').textContent = D.reportingMonth;
+    document.getElementById('lastUpdated').textContent = `Updated ${D.lastUpdated}`;
+    document.getElementById('bannerMonth').textContent = D.reportingMonth;
+    document.getElementById('footerDate').textContent = D.lastUpdated;
+
+    // ── Summary Cards ──────────────────────────────────────
+    const platformCards = [
+      { cls: 'website',   icon: '&#127760;', label: 'Website Visitors', value: D.website.visitors,       growth: D.website.visitorGrowth },
+      { cls: 'hubspot',   icon: '&#9993;',  label: 'Email Subs',       value: D.hubspot.subscribers,    growth: D.hubspot.subscriberGrowth },
+      { cls: 'podcast',   icon: '&#127911;', label: 'Podcast Downloads', value: D.podcast.monthlyDownloads, growth: D.podcast.downloadGrowth },
+    ];
+
+    const socialCards = [
+      { cls: 'youtube',   icon: '&#9654;',  label: 'YouTube Subs',     value: D.youtube.subscribers,    growth: D.youtube.subscriberGrowth },
+      { cls: 'instagram', icon: '&#128247;', label: 'Instagram',        value: D.instagram.followers,    growth: D.instagram.followerGrowth },
+      { cls: 'facebook',  icon: '&#128077;', label: 'Facebook',         value: D.facebook.followers,     growth: D.facebook.followerGrowth },
+      { cls: 'linkedin',  icon: '&#128188;', label: 'LinkedIn',         value: D.linkedin.followers,     growth: D.linkedin.followerGrowth },
+    ];
+
+    function renderCards(container, cards) {
+      cards.forEach(s => {
+        container.innerHTML += `
+          <div class="summary-card ${s.cls}">
+            <div class="summary-icon">${s.icon}</div>
+            <div class="summary-label">${s.label}</div>
+            <div class="summary-value">${fmt(s.value)}</div>
+            ${growthHtml(s.growth)}
+          </div>`;
+      });
+    }
+
+    renderCards(document.getElementById('summaryPlatforms'), platformCards);
+    renderCards(document.getElementById('summarySocials'), socialCards);
+
+    // ── YouTube ────────────────────────────────────────────
+    document.getElementById('ytLink').href = D.youtube.channelUrl;
+    const _ytEps = D.youtube.episodes || [];
+    const _ytSho = D.youtube.shorts || [];
+    const _epViews = _ytEps.reduce((s, e) => s + e.views, 0);
+    const _shViews = _ytSho.reduce((s, e) => s + e.views, 0);
+
+    document.getElementById('ytStats').innerHTML =
+      statBox('Subscribers', D.youtube.subscribers) +
+      statBox('Total Views', D.youtube.totalViews) +
+      statBox('Episodes', _ytEps.length) +
+      statBox('Shorts', _ytSho.length);
+
+    makeLineChart(
+      document.getElementById('ytChart'),
+      D.youtube.monthlyViews.map(m => m.month),
+      D.youtube.monthlyViews.map(m => m.views),
+      '#FF0000', 'Views'
+    );
+
+    document.getElementById('ytEpisodes').innerHTML = episodeTable(_ytEps);
+    document.getElementById('ytShorts').innerHTML = episodeTable(_ytSho);
+    document.getElementById('ytCompare').innerHTML =
+      statBox('Episode Views', _epViews) +
+      statBox('Shorts Views', _shViews) +
+      statBox('Avg/Episode', _ytEps.length ? Math.round(_epViews / _ytEps.length) : 0) +
+      statBox('Avg/Short', _ytSho.length ? Math.round(_shViews / _ytSho.length) : 0);
+
+    // ── Website ────────────────────────────────────────────
+    document.getElementById('webStats').innerHTML =
+      statBox('Visitors', D.website.visitors) +
+      statBox('Growth', (D.website.visitorGrowth > 0 ? '+' : '') + D.website.visitorGrowth);
+
+    makeLineChart(
+      document.getElementById('webChart'),
+      D.website.monthlyVisitors.map(m => m.month),
+      D.website.monthlyVisitors.map(m => m.visitors),
+      '#C9A0DC', 'Visitors'
+    );
+
+    // ── HubSpot ────────────────────────────────────────────
+    document.getElementById('hsStats').innerHTML =
+      statBox('Subscribers', D.hubspot.subscribers) +
+      statBox('Growth', (D.hubspot.subscriberGrowth > 0 ? '+' : '') + D.hubspot.subscriberGrowth);
+
+    makeLineChart(
+      document.getElementById('hsChart'),
+      D.hubspot.monthlySubscribers.map(m => m.month),
+      D.hubspot.monthlySubscribers.map(m => m.count),
+      '#FF7A59', 'Subscribers'
+    );
+
+    // ── Podcast ────────────────────────────────────────────
+    document.getElementById('podStats').innerHTML =
+      statBox('Total Downloads', D.podcast.totalDownloads) +
+      statBox('This Month', D.podcast.monthlyDownloads) +
+      statBox('Subscribers', D.podcast.subscribers);
+
+    makeLineChart(
+      document.getElementById('podChart'),
+      D.podcast.monthlyDownloads_history.map(m => m.month),
+      D.podcast.monthlyDownloads_history.map(m => m.downloads),
+      '#1DB954', 'Downloads'
+    );
+
+    document.getElementById('podEpisodes').innerHTML = episodeTable(D.podcast.topEpisodes, 'Downloads', false);
+
+    // ── Instagram ──────────────────────────────────────────
+    document.getElementById('igLink').href = D.instagram.profileUrl;
+    document.getElementById('igStats').innerHTML =
+      statBox('Followers', D.instagram.followers) +
+      statBox('Growth', (D.instagram.followerGrowth > 0 ? '+' : '') + D.instagram.followerGrowth);
+
+    makeLineChart(
+      document.getElementById('igChart'),
+      D.instagram.monthlyFollowers.map(m => m.month),
+      D.instagram.monthlyFollowers.map(m => m.count),
+      '#DD2A7B', 'Followers'
+    );
+
+    // ── Facebook ───────────────────────────────────────────
+    document.getElementById('fbLink').href = D.facebook.profileUrl;
+    document.getElementById('fbStats').innerHTML =
+      statBox('Followers', D.facebook.followers) +
+      statBox('Growth', (D.facebook.followerGrowth > 0 ? '+' : '') + D.facebook.followerGrowth);
+
+    makeLineChart(
+      document.getElementById('fbChart'),
+      D.facebook.monthlyFollowers.map(m => m.month),
+      D.facebook.monthlyFollowers.map(m => m.count),
+      '#1877F2', 'Followers'
+    );
+
+    // ── LinkedIn ───────────────────────────────────────────
+    document.getElementById('liLink').href = D.linkedin.profileUrl;
+    document.getElementById('liStats').innerHTML =
+      statBox('Followers', D.linkedin.followers) +
+      statBox('Growth', (D.linkedin.followerGrowth > 0 ? '+' : '') + D.linkedin.followerGrowth);
+
+    makeLineChart(
+      document.getElementById('liChart'),
+      D.linkedin.monthlyFollowers.map(m => m.month),
+      D.linkedin.monthlyFollowers.map(m => m.count),
+      '#0A66C2', 'Followers'
+    );
+
+    // ── Fetch live data (overlays on top of data.js) ────────
+    fetchLiveData();
+  </script>
+</body>
+</html>
