@@ -32,6 +32,7 @@ jobs:
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           HUBSPOT_TOKEN: ${{ secrets.HUBSPOT_TOKEN }}
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
         run: python update_data.py
 
       - name: Commit and push updated data.js

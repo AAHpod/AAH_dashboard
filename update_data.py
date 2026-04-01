@@ -17,6 +17,11 @@ HUBSPOT_TOKEN      = os.environ.get("HUBSPOT_TOKEN", "")
 SHEET_ID           = "1vRdlPTCv_i3sA-WBlheHDKvu6KNNCZri"
 SHEET_GID          = "1571762833"
 
+BREVO_API_KEY = os.environ.get("BREVO_API_KEY", "")
+EMAIL_FROM_NAME  = "AAH Bot"
+EMAIL_FROM       = "hello@accountantsafterhours.com.au"
+EMAIL_TO         = ["hello@accountantsafterhours.com.au", "sarah@hottoast.com.au"]
+
 DIR          = os.path.dirname(os.path.abspath(__file__))
 DATA_JS_PATH = os.path.join(DIR, "data.js")
 
@@ -237,6 +242,107 @@ const DASHBOARD_DATA = {{
     print(f"  data.js updated for {report_label}")
 
 
+# ── Email HTML ────────────────────────────────────────────────────────────────
+def _delta(current, prev):
+    d = current - prev
+    if d > 0:  return f'<span style="color:#22C55E;font-size:13px">&#9650; +{d:,}</span>'
+    if d < 0:  return f'<span style="color:#EF4444;font-size:13px">&#9660; {d:,}</span>'
+    return '<span style="color:#888;font-size:13px">&#8212; no change</span>'
+
+def build_email_html(monthly, episodes, yt, hs_count, report_label):
+    month_order = sorted(monthly.keys(), key=lambda m: datetime.strptime(m, "%b %Y"))
+    idx = month_order.index(report_label) if report_label in month_order else -1
+    curr_row = monthly.get(report_label, {})
+
+    def cv(f): return _int(curr_row.get(f, 0))
+    def pv(f): return _int(monthly[month_order[idx-1]].get(f, 0)) if idx > 0 else 0
+
+    try:
+        rm_full = datetime.strptime(report_label, "%b %Y").strftime("%B %Y")
+    except ValueError:
+        rm_full = report_label
+
+    def card(label, value, delta_html="", color="#000"):
+        return f"""<td width="30%" style="padding:14px 16px;background:#F7F7F7;border-radius:10px;text-align:center;vertical-align:top">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#888;margin-bottom:6px">{label}</div>
+          <div style="font-size:28px;font-weight:900;color:{color};line-height:1.1">{value:,}</div>
+          <div style="margin-top:4px">{delta_html}</div>
+        </td>"""
+
+    sp = '<td width="5%"></td>'
+    total_pod = sum(e["downloads"] for e in episodes)
+    ep_rows = "".join(
+        f'<tr><td style="padding:10px 14px;border-bottom:1px solid #f0f0f0;font-size:13px">{e["title"]}</td>'
+        f'<td style="padding:10px 14px;border-bottom:1px solid #f0f0f0;font-size:13px;font-weight:800;text-align:right">{e["downloads"]:,}</td></tr>'
+        for e in sorted(episodes, key=lambda e: e["downloads"], reverse=True)[:10]
+    )
+
+    return f"""<!DOCTYPE html><html><head><meta charset="UTF-8"></head>
+<body style="margin:0;padding:0;background:#F0F0F0;font-family:Arial,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="padding:32px 0"><tr><td>
+<table width="620" cellpadding="0" cellspacing="0" align="center"
+       style="background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.10)">
+  <tr><td style="background:#000;padding:28px 36px">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#FFE500;margin-bottom:6px">Monthly Performance Report</div>
+    <div style="font-size:26px;font-weight:900;color:#fff"">Accountants After Hours</div>
+    <div style="font-size:14px;color:#888;margin-top:6px">{rm_full}</div>
+  </td></tr>
+  <tr><td style="background:#FFD5D0;padding:14px 36px;font-size:14px;font-weight:700;color:#000;text-align:center">
+    Here&rsquo;s your monthly snapshot &mdash; <span style="background:#FFE500;padding:2px 8px">{rm_full}</span>
+  </td></tr>
+  <tr><td style="padding:32px 36px">
+    <div style="font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:#888;margin-bottom:12px">Platforms</div>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:12px"><tr>
+      {card("YouTube Subs",     yt["subscribers"], _delta(yt["subscribers"], pv("YouTube Subscribers")))}
+      {sp}{card("Email Subs", hs_count, _delta(hs_count, pv("Mailing List Subscribers")))}
+      {sp}{card("Website Visitors", cv("Website Visitors"), _delta(cv("Website Visitors"), pv("Website Visitors")))}
+    </tr></table>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px"><tr>
+      {card("Podcast Downloads", cv("Podcast Downloads"), _delta(cv("Podcast Downloads"), pv("Podcast Downloads")), "#1DB954")}
+      {sp}{card("YouTube Total Views", yt["totalViews"], "", "#FF0000")}
+      {sp}<td width="30%"></td>
+    </tr></table>
+    <div style="font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:#888;margin-bottom:12px">Social Media</div>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px"><tr>
+      {card("Instagram",  cv("Instagram Followers"),  _delta(cv("Instagram Followers"),  pv("Instagram Followers")))}
+      {sp}{card("LinkedIn", cv("LinkedIn Followers"), _delta(cv("LinkedIn Followers"), pv("LinkedIn Followers")))}
+      {sp}{card("Facebook", _int(curr_row.get("Facebook Followers ", 0)), _delta(_int(curr_row.get("Facebook Followers ", 0)), pv("Facebook Followers ")))}
+    </tr></table>
+    <div style="font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:#888;margin-bottom:4px">Podcast Episodes</div>
+    <div style="font-size:12px;color:#888;margin-bottom:12px">All-time total: <strong style="color:#000">{total_pod:,} downloads</strong></div>
+    {'<table width="100%" style="border-collapse:collapse"><thead><tr>'
+     '<th style="text-align:left;padding:10px 14px;font-size:10px;font-weight:700;text-transform:uppercase;color:#888;background:#F7F7F7;border-bottom:2px solid #eee">Episode</th>'
+     '<th style="text-align:right;padding:10px 14px;font-size:10px;font-weight:700;text-transform:uppercase;color:#888;background:#F7F7F7;border-bottom:2px solid #eee">Downloads</th>'
+     f'</tr></thead><tbody>{ep_rows}</tbody></table>' if ep_rows else '<p style="color:#aaa;font-size:13px">No episode data.</p>'}
+  </td></tr>
+  <tr><td style="background:#000;padding:20px 36px;text-align:center">
+    <p style="margin:0;color:#555;font-size:12px">Accountants After Hours &bull; Generated {date.today().strftime("%-d %B %Y")}</p>
+    <p style="margin:6px 0 0"><a href="https://aahpod.github.io/AAH_dashboard" style="color:#FFE500;font-size:12px;text-decoration:none">View Live Dashboard</a></p>
+  </td></tr>
+</table></td></tr></table></body></html>"""
+
+
+def send_email(subject, html_body):
+    if not BREVO_API_KEY:
+        print("  No BREVO_API_KEY set — skipping email.")
+        return
+    payload = json.dumps({
+        "sender": {"name": EMAIL_FROM_NAME, "email": EMAIL_FROM},
+        "to": [{"email": e} for e in EMAIL_TO],
+        "subject": subject,
+        "htmlContent": html_body,
+    }).encode("utf-8")
+    req = urllib.request.Request("https://api.brevo.com/v3/smtp/email", data=payload, method="POST")
+    req.add_header("api-key",      BREVO_API_KEY)
+    req.add_header("Content-Type", "application/json")
+    try:
+        with urllib.request.urlopen(req, context=ssl_ctx) as r:
+            resp = json.loads(r.read())
+        print(f"  Email sent via Brevo (messageId: {resp.get('messageId', '?')})")
+    except urllib.error.HTTPError as e:
+        print(f"  Brevo error {e.code}: {e.read().decode()}")
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     # In GitHub Actions, workflow_dispatch allows manual runs anytime.
@@ -271,5 +377,10 @@ if __name__ == "__main__":
 
     print("Writing data.js...")
     write_data_js(monthly, episodes, yt, hs_count, report_label)
+
+    print("Sending email...")
+    subject = f"AAH Monthly Report — {datetime.strptime(report_label, '%b %Y').strftime('%B %Y')}"
+    html = build_email_html(monthly, episodes, yt, hs_count, report_label)
+    send_email(subject, html)
 
     print("Done!")
