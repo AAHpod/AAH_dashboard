@@ -597,7 +597,7 @@
         if (live.youtube && !live.youtube.error) {
           const yt = live.youtube;
           const episodes = yt.episodes || [];
-          const shorts = yt.shorts || [];
+          const shorts = (yt.shorts || []).slice().sort((a, b) => b.views - a.views);
           D.youtube.subscribers = yt.subscribers;
           D.youtube.totalViews = yt.totalViews;
           D.youtube.episodes = episodes;
@@ -780,7 +780,7 @@
     // ── YouTube ────────────────────────────────────────────
     document.getElementById('ytLink').href = D.youtube.channelUrl;
     const _ytEps = D.youtube.episodes || [];
-    const _ytSho = D.youtube.shorts || [];
+    const _ytSho = (D.youtube.shorts || []).slice().sort((a, b) => b.views - a.views);
     const _epViews = _ytEps.reduce((s, e) => s + e.views, 0);
     const _shViews = _ytSho.reduce((s, e) => s + e.views, 0);
 
