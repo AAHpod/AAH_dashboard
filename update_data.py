@@ -298,8 +298,8 @@ def build_email_html(monthly, episodes, yt, hs_count, report_label):
       {sp}{card("Website Visitors", cv("Website Visitors"), _delta(cv("Website Visitors"), pv("Website Visitors")))}
     </tr></table>
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px"><tr>
-      {card("Podcast Downloads", cv("Podcast Downloads"), _delta(cv("Podcast Downloads"), pv("Podcast Downloads")), "#1DB954")}
-      {sp}{card("YouTube Total Views", yt["totalViews"], "", "#FF0000")}
+      {card("Podcast Downloads", cv("Podcast Downloads"), _delta(cv("Podcast Downloads"), pv("Podcast Downloads")))}
+      {sp}{card("YouTube Total Views", yt["totalViews"])}
       {sp}<td width="30%"></td>
     </tr></table>
     <div style="font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:#888;margin-bottom:12px">Social Media</div>
