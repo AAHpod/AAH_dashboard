@@ -13,7 +13,115 @@ const DASHBOARD_DATA = {
     subscriberGrowth: 31,
     totalViews: 3967,
     channelUrl: "https://www.youtube.com/@AccountantsAfterHours",
-    episodes: [],
+    episodes: [
+    {
+        "title": "The 2025 Wrap, the 2026 Energy",
+        "views": 68,
+        "likes": 6,
+        "publishedDate": "2026-02-25",
+        "duration": 2566
+    },
+    {
+        "title": "Bonus Ep AI Already Changed\u2026 Again",
+        "views": 58,
+        "likes": 7,
+        "publishedDate": "2026-03-23",
+        "duration": 1313
+    },
+    {
+        "title": "Will AI Take Your Job?",
+        "views": 43,
+        "likes": 2,
+        "publishedDate": "2026-03-10",
+        "duration": 2919
+    }
+],
+    shorts: [
+    {
+        "title": "Are you missing the industry events that matter?",
+        "views": 1569,
+        "likes": 6,
+        "publishedDate": "2026-03-05",
+        "duration": 36
+    },
+    {
+        "title": "Would you let a client go for using AI?",
+        "views": 1151,
+        "likes": 1,
+        "publishedDate": "2026-03-25",
+        "duration": 43
+    },
+    {
+        "title": "Not LinkedIn safe",
+        "views": 269,
+        "likes": 2,
+        "publishedDate": "2026-02-10",
+        "duration": 27
+    },
+    {
+        "title": "The cowboy accountant that got caught \ud83d\udc40",
+        "views": 229,
+        "likes": 0,
+        "publishedDate": "2026-03-12",
+        "duration": 55
+    },
+    {
+        "title": "Behind the Scenes Snippets - Sneak Peak",
+        "views": 148,
+        "likes": 8,
+        "publishedDate": "2026-02-08",
+        "duration": 166
+    },
+    {
+        "title": "The admin job AI killed forever",
+        "views": 139,
+        "likes": 0,
+        "publishedDate": "2026-03-29",
+        "duration": 67
+    },
+    {
+        "title": "Are accountants becoming redundant in 2026?",
+        "views": 106,
+        "likes": 1,
+        "publishedDate": "2026-03-09",
+        "duration": 45
+    },
+    {
+        "title": "Are women in accounting seen as unapproachable?",
+        "views": 98,
+        "likes": 1,
+        "publishedDate": "2026-03-02",
+        "duration": 39
+    },
+    {
+        "title": "Has anyone fully automated AP yet?",
+        "views": 85,
+        "likes": 0,
+        "publishedDate": "2026-03-31",
+        "duration": 33
+    },
+    {
+        "title": "Should accountants build their own AI or wait for the software?",
+        "views": 44,
+        "likes": 0,
+        "publishedDate": "2026-03-24",
+        "duration": 47
+    },
+    {
+        "title": "This is what accountants need to know about AI Agents in 2026",
+        "views": 26,
+        "likes": 1,
+        "publishedDate": "2026-03-18",
+        "duration": 69
+    },
+    {
+        "title": "Not your typical accounting podcast. Definitely not LinkedIn safe.",
+        "views": 19,
+        "likes": 1,
+        "publishedDate": "2026-03-08",
+        "duration": 14
+    }
+],
     monthlyViews: [
     {
         "month": "Feb 2026",
