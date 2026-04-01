@@ -1,11 +1,9 @@
-name: Monthly Dashboard Update
+name: Daily Dashboard Update
 
 on:
-  # Runs at 11pm UTC on the 2nd, 3rd, 4th of each month (= 9am AEST)
+  # Runs daily at 11pm UTC (= 9am AEST)
   schedule:
-    - cron: '0 23 2 * *'
-    - cron: '0 23 3 * *'
-    - cron: '0 23 4 * *'
+    - cron: '0 23 * * *'
   # Allow manual trigger from GitHub UI
   workflow_dispatch:
 

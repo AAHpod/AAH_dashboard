@@ -91,17 +91,59 @@ def parse_sheet(rows):
 
 
 # ── API fetchers ───────────────────────────────────────────────────────────────
+def parse_duration(duration_str):
+    import re
+    match = re.match(r'PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?', duration_str)
+    if not match:
+        return 0
+    return int(match.group(1) or 0)*3600 + int(match.group(2) or 0)*60 + int(match.group(3) or 0)
+
+
 def fetch_youtube():
-    url = (f"https://www.googleapis.com/youtube/v3/channels"
-           f"?part=statistics,snippet&id={YOUTUBE_CHANNEL_ID}&key={YOUTUBE_API_KEY}")
+    base = "https://www.googleapis.com/youtube/v3"
+
+    # Channel stats
+    url = f"{base}/channels?part=statistics,snippet&id={YOUTUBE_CHANNEL_ID}&key={YOUTUBE_API_KEY}"
     with urllib.request.urlopen(url, context=ssl_ctx) as r:
         data = json.loads(r.read())
     stats   = data["items"][0]["statistics"]
     snippet = data["items"][0]["snippet"]
+
+    # All videos from uploads playlist
+    uploads_id = "UU" + YOUTUBE_CHANNEL_ID[2:]
+    url = f"{base}/playlistItems?part=snippet&playlistId={uploads_id}&maxResults=50&key={YOUTUBE_API_KEY}"
+    with urllib.request.urlopen(url, context=ssl_ctx) as r:
+        playlist_data = json.loads(r.read())
+
+    video_ids = [item["snippet"]["resourceId"]["videoId"] for item in playlist_data.get("items", [])]
+
+    episodes = []
+    shorts   = []
+    if video_ids:
+        ids_str = ",".join(video_ids)
+        url = f"{base}/videos?part=statistics,snippet,contentDetails&id={ids_str}&key={YOUTUBE_API_KEY}"
+        with urllib.request.urlopen(url, context=ssl_ctx) as r:
+            videos_data = json.loads(r.read())
+        for v in videos_data.get("items", []):
+            seconds = parse_duration(v["contentDetails"]["duration"])
+            entry = {
+                "title":         v["snippet"]["title"],
+                "views":         int(v["statistics"].get("viewCount", 0)),
+                "likes":         int(v["statistics"].get("likeCount", 0)),
+                "publishedDate": v["snippet"]["publishedAt"][:10],
+                "duration":      seconds,
+            }
+            if seconds <= 600:
+                shorts.append(entry)
+            else:
+                episodes.append(entry)
+
     return {
         "subscribers": int(stats.get("subscriberCount", 0)),
         "totalViews":  int(stats.get("viewCount", 0)),
         "title":       snippet.get("title", ""),
+        "episodes":    episodes,
+        "shorts":      shorts,
     }
 
 
@@ -177,7 +219,8 @@ const DASHBOARD_DATA = {{
     subscriberGrowth: {yt["subscribers"] - curr_yt_prev},
     totalViews: {yt["totalViews"]},
     channelUrl: "https://www.youtube.com/@AccountantsAfterHours",
-    episodes: [],
+    episodes: {json.dumps(sorted(yt.get("episodes", []), key=lambda e: e["views"], reverse=True), indent=4)},
+    shorts: {json.dumps(sorted(yt.get("shorts", []), key=lambda e: e["views"], reverse=True), indent=4)},
     monthlyViews: {json.dumps(yt_monthly, indent=4)},
   }},
 
@@ -345,15 +388,8 @@ def send_email(subject, html_body):
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    # In GitHub Actions, workflow_dispatch allows manual runs anytime.
-    # Scheduled runs check the day logic.
-    is_manual = os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch"
-
-    if not is_manual and not should_run():
-        print(f"Not the right day to run ({date.today()}). Skipping.")
-        raise SystemExit(0)
-
-    # Report is for the month that just ended
+    # Report label = the most recent month that has data in the sheet
+    # (always the month before today if it's been filled in)
     first_of_today = date.today().replace(day=1)
     last_month_end = first_of_today - timedelta(days=1)
     report_label   = last_month_end.strftime("%b %Y")
@@ -363,13 +399,18 @@ if __name__ == "__main__":
     rows = fetch_sheet_rows()
     monthly, episodes = parse_sheet(rows)
 
+    # Fall back to most recent available month if current month not filled in yet
     if report_label not in monthly:
-        print(f"WARNING: '{report_label}' not found in sheet. Please fill in the row. Aborting.")
-        raise SystemExit(1)
+        available = [m for m in monthly if any(v.strip() for v in monthly[m].values())]
+        if not available:
+            print("No data in sheet yet. Aborting.")
+            raise SystemExit(1)
+        report_label = sorted(available, key=lambda m: datetime.strptime(m, "%b %Y"))[-1]
+        print(f"  Sheet doesn't have {report_label} yet — using {report_label}")
 
     print("Fetching YouTube...")
     yt = fetch_youtube()
-    print(f"  Subscribers: {yt['subscribers']:,}  Views: {yt['totalViews']:,}")
+    print(f"  Subscribers: {yt['subscribers']:,}  Views: {yt['totalViews']:,}  Episodes: {len(yt['episodes'])}  Shorts: {len(yt['shorts'])}")
 
     print("Fetching HubSpot...")
     hs_count = fetch_hubspot()
@@ -378,9 +419,14 @@ if __name__ == "__main__":
     print("Writing data.js...")
     write_data_js(monthly, episodes, yt, hs_count, report_label)
 
-    print("Sending email...")
-    subject = f"AAH Monthly Report — {datetime.strptime(report_label, '%b %Y').strftime('%B %Y')}"
-    html = build_email_html(monthly, episodes, yt, hs_count, report_label)
-    send_email(subject, html)
+    # Only email on the 2nd of the month (or next Monday if weekend)
+    is_manual = os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch"
+    if is_manual or should_run():
+        print("Sending email...")
+        subject = f"AAH Monthly Report — {datetime.strptime(report_label, '%b %Y').strftime('%B %Y')}"
+        html = build_email_html(monthly, episodes, yt, hs_count, report_label)
+        send_email(subject, html)
+    else:
+        print(f"Not email day ({date.today()}) — data updated, no email sent.")
 
     print("Done!")
