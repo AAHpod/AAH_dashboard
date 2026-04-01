@@ -20,7 +20,7 @@ SHEET_GID          = "1571762833"
 BREVO_API_KEY = os.environ.get("BREVO_API_KEY", "")
 EMAIL_FROM_NAME  = "AAH Bot"
 EMAIL_FROM       = "hello@accountantsafterhours.com.au"
-EMAIL_TO         = ["hello@accountantsafterhours.com.au", "sarah@hottoast.com.au"]
+EMAIL_TO         = ["hello@accountantsafterhours.com.au", "sarah@hottoast.com.au", "natalie@twosides.com.au"]
 
 DIR          = os.path.dirname(os.path.abspath(__file__))
 DATA_JS_PATH = os.path.join(DIR, "data.js")
