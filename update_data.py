@@ -141,7 +141,7 @@ def write_data_js(monthly, episodes, yt, hs_count, report_label):
     web_monthly = [{"month": m, "visitors":  _int(monthly[m].get("Website Visitors",         0))} for m in month_order]
     hs_monthly  = [{"month": m, "count":     _int(monthly[m].get("Mailing List Subscribers", 0))} for m in month_order]
     ig_monthly  = [{"month": m, "count":     _int(monthly[m].get("Instagram Followers",      0))} for m in month_order]
-    fb_monthly  = [{"month": m, "count":     _int(monthly[m].get("Facebook Followers ",      0))} for m in month_order]
+    fb_monthly  = [{"month": m, "count":     _int(monthly[m].get("Facebook Followers",      0))} for m in month_order]
     li_monthly  = [{"month": m, "count":     _int(monthly[m].get("LinkedIn Followers",       0))} for m in month_order]
     pod_monthly = [{"month": m, "downloads": _int(monthly[m].get("Podcast Downloads",        0))} for m in month_order]
 
@@ -151,7 +151,7 @@ def write_data_js(monthly, episodes, yt, hs_count, report_label):
     curr_pod_sub = _pod_subs(monthly.get(report_label, {}))
     prev_pod_sub = _pod_subs(monthly.get(month_order[month_order.index(report_label)-1], {}) if report_label in month_order and month_order.index(report_label) > 0 else {})
     curr_ig      = curr("Instagram Followers")
-    curr_fb      = _int(monthly.get(report_label, {}).get("Facebook Followers ", 0))
+    curr_fb      = _int(monthly.get(report_label, {}).get("Facebook Followers", 0))
     curr_li      = curr("LinkedIn Followers")
     total_pod    = sum(e["downloads"] for e in episodes)
     top_eps      = sorted(episodes, key=lambda e: e["downloads"], reverse=True)[:5]
@@ -220,7 +220,7 @@ const DASHBOARD_DATA = {{
 
   facebook: {{
     followers: {curr_fb},
-    followerGrowth: {curr_fb - prev("Facebook Followers ")},
+    followerGrowth: {curr_fb - prev("Facebook Followers")},
     reach: 0,
     engagement: "0%",
     profileUrl: "https://www.facebook.com/accountantsafterhours",
@@ -306,7 +306,7 @@ def build_email_html(monthly, episodes, yt, hs_count, report_label):
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px"><tr>
       {card("Instagram",  cv("Instagram Followers"),  _delta(cv("Instagram Followers"),  pv("Instagram Followers")))}
       {sp}{card("LinkedIn", cv("LinkedIn Followers"), _delta(cv("LinkedIn Followers"), pv("LinkedIn Followers")))}
-      {sp}{card("Facebook", _int(curr_row.get("Facebook Followers ", 0)), _delta(_int(curr_row.get("Facebook Followers ", 0)), pv("Facebook Followers ")))}
+      {sp}{card("Facebook", _int(curr_row.get("Facebook Followers", 0)), _delta(_int(curr_row.get("Facebook Followers", 0)), pv("Facebook Followers")))}
     </tr></table>
     <div style="font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:#888;margin-bottom:4px">Podcast Episodes</div>
     <div style="font-size:12px;color:#888;margin-bottom:12px">All-time total: <strong style="color:#000">{total_pod:,} downloads</strong></div>
