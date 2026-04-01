@@ -293,19 +293,19 @@ const DASHBOARD_DATA = {
   },
 
   facebook: {
-    followers: 0,
-    followerGrowth: 0,
+    followers: 53,
+    followerGrowth: 11,
     reach: 0,
     engagement: "0%",
     profileUrl: "https://www.facebook.com/accountantsafterhours",
     monthlyFollowers: [
     {
         "month": "Feb 2026",
-        "count": 0
+        "count": 42
     },
     {
         "month": "Mar 2026",
-        "count": 0
+        "count": 53
     },
     {
         "month": "Apr 2026",
