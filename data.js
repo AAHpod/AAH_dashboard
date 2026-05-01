@@ -11,12 +11,12 @@ const DASHBOARD_DATA = {
   youtube: {
     subscribers: 44,
     subscriberGrowth: 44,
-    totalViews: 5531,
+    totalViews: 5545,
     channelUrl: "https://www.youtube.com/@AccountantsAfterHours",
     episodes: [
     {
         "title": "Accountants vs Bookkeepers",
-        "views": 130,
+        "views": 133,
         "likes": 4,
         "publishedDate": "2026-04-15",
         "duration": 1672
@@ -44,7 +44,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Tax Planning Made Simple",
-        "views": 11,
+        "views": 14,
         "likes": 0,
         "publishedDate": "2026-04-29",
         "duration": 1780
@@ -67,7 +67,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "The receipt rule bookkeepers keep getting wrong\u2026",
-        "views": 1041,
+        "views": 1042,
         "likes": 4,
         "publishedDate": "2026-04-27",
         "duration": 94
@@ -137,7 +137,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Not your typical accounting podcast. Definitely not LinkedIn safe.",
-        "views": 41,
+        "views": 42,
         "likes": 2,
         "publishedDate": "2026-03-08",
         "duration": 14
@@ -280,7 +280,7 @@ const DASHBOARD_DATA = {
     },
     {
         "month": "Apr 2026",
-        "count": 0
+        "count": 94
     },
     {
         "month": "May 2026",
@@ -334,7 +334,7 @@ const DASHBOARD_DATA = {
         "downloads": 351
     },
     {
-        "title": "Episode 5: Accountans v Bookkeepers",
+        "title": "Episode 5: Accountants v Bookkeepers",
         "downloads": 272
     },
     {
@@ -342,54 +342,65 @@ const DASHBOARD_DATA = {
         "downloads": 255
     },
     {
-        "title": "Episode 4: Live from ABE",
+        "title": "Episode 4: Live from the Accounting & Business Expo",
         "downloads": 228
     }
 ],
     monthlyDownloads_history: [
     {
         "month": "Feb 2026",
-        "downloads": 0
+        "downloads": 0,
+        "subscribers": 0
     },
     {
         "month": "Mar 2026",
-        "downloads": 1163
+        "downloads": 1163,
+        "subscribers": 74
     },
     {
         "month": "Apr 2026",
-        "downloads": 775
+        "downloads": 775,
+        "subscribers": 96
     },
     {
         "month": "May 2026",
-        "downloads": 0
+        "downloads": 0,
+        "subscribers": 0
     },
     {
         "month": "Jun 2026",
-        "downloads": 0
+        "downloads": 0,
+        "subscribers": 0
     },
     {
         "month": "Jul 2026",
-        "downloads": 0
+        "downloads": 0,
+        "subscribers": 0
     },
     {
         "month": "Aug 2026",
-        "downloads": 0
+        "downloads": 0,
+        "subscribers": 0
     },
     {
         "month": "Sep 2026",
-        "downloads": 0
+        "downloads": 0,
+        "subscribers": 0
     },
     {
         "month": "Oct 2026",
-        "downloads": 0
+        "downloads": 0,
+        "subscribers": 0
     },
     {
         "month": "Nov 2026",
-        "downloads": 0
+        "downloads": 0,
+        "subscribers": 0
     },
     {
         "month": "Dec 2026",
-        "downloads": 0
+        "downloads": 0,
+        "subscribers": 0
     }
 ],
   },
