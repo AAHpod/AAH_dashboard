@@ -326,24 +326,28 @@ const DASHBOARD_DATA = {
     subscriberGrowth: 22,
     topEpisodes: [
     {
-        "title": "Episode 1:  The 2025 Wrap, the 2026 Energy",
+        "title": "The 2025 Wrap, the 2026 Energy",
         "downloads": 787
     },
     {
-        "title": "Episode 2: Will AI Take your Job?",
+        "title": "Will AI Take your Job?",
         "downloads": 351
     },
     {
-        "title": "Episode 5: Accountants v Bookkeepers",
+        "title": "Accountants v Bookkeepers",
         "downloads": 272
     },
     {
-        "title": "Episode 3: Bonus EP, AI already changed again",
+        "title": "Bonus EP, AI already changed again",
         "downloads": 255
     },
     {
-        "title": "Episode 4: Live from the Accounting & Business Expo",
+        "title": "Live from the Accounting & Business Expo",
         "downloads": 228
+    },
+    {
+        "title": "Tax Planning Made Simple",
+        "downloads": 45
     }
 ],
     monthlyDownloads_history: [
