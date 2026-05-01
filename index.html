@@ -430,7 +430,7 @@
   <div class="container">
 
     <!-- ── Summary Cards ────────────────────────────────── -->
-    <h2 class="section-title">Overall Snapshot</h2>
+    <h2 class="section-title">Overall Snapshot — All Time</h2>
     <div class="summary-group-label">Platforms</div>
     <div class="summary-row" id="summaryPlatforms"></div>
     <div class="summary-group-label">Socials — Followers</div>
@@ -750,9 +750,9 @@
 
     // ── Summary Cards ──────────────────────────────────────
     const platformCards = [
-      { cls: 'website',   icon: '&#127760;', label: 'Website Visitors', value: D.website.visitors,       growth: D.website.visitorGrowth },
+      { cls: 'website',   icon: '&#127760;', label: 'Website Visitors', value: D.website.monthlyVisitors.reduce((s,m) => s + m.visitors, 0),       growth: D.website.visitors },
       { cls: 'hubspot',   icon: '&#9993;',  label: 'Email Subs',       value: D.hubspot.subscribers,    growth: D.hubspot.subscriberGrowth },
-      { cls: 'podcast',   icon: '&#127911;', label: 'Podcast Downloads', value: D.podcast.monthlyDownloads, growth: D.podcast.downloadGrowth },
+      { cls: 'podcast',   icon: '&#127911;', label: 'Podcast Downloads', value: D.podcast.totalDownloads, growth: D.podcast.monthlyDownloads },
     ];
 
     const socialCards = [
