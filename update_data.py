@@ -184,8 +184,8 @@ def write_data_js(monthly, episodes, yt, hs_count, report_label):
     ig_monthly  = [{"month": m, "count":     _int(monthly[m].get("Instagram Followers",      0))} for m in month_order]
     fb_monthly  = [{"month": m, "count":     _int(monthly[m].get("Facebook Followers",      0))} for m in month_order]
     li_monthly  = [{"month": m, "count":     _int(monthly[m].get("LinkedIn Followers",       0))} for m in month_order]
-    pod_monthly = [{"month": m, "downloads": _int(monthly[m].get("Podcast Downloads",        0))} for m in month_order]
-
+    pod_monthly = [{"month": m, "downloads": _int(monthly[m].get("Podcast Downloads",      0)), "subscribers": _pod_subs(monthly[m])} for m in month_order]
+    
     curr_yt_prev = _int(monthly[month_order[-2]].get("YouTube Subscribers", 0)) if len(month_order) > 1 else 0
     curr_web     = curr("Website Visitors")
     curr_pod_dl  = curr("Podcast Downloads")
