@@ -835,13 +835,44 @@
       statBox('This Month', D.podcast.monthlyDownloads) +
       statBox('Subscribers', D.podcast.subscribers);
 
-    makeLineChart(
-      document.getElementById('podChart'),
-      D.podcast.monthlyDownloads_history.map(m => m.month),
-      D.podcast.monthlyDownloads_history.map(m => m.downloads),
-      '#1DB954', 'Downloads'
-    );
-
+    new Chart(document.getElementById('podChart'), {
+      type: 'line',
+      data: {
+        labels: D.podcast.monthlyDownloads_history.map(m => m.month),
+        datasets: [
+          {
+            label: 'Downloads',
+            data: D.podcast.monthlyDownloads_history.map(m => m.downloads),
+            borderColor: '#1DB954',
+            backgroundColor: 'rgba(29,185,84,0.1)',
+            fill: true,
+            tension: 0.35,
+            pointRadius: 5,
+            yAxisID: 'y'
+          },
+          {
+            label: 'Subscribers',
+            data: D.podcast.monthlyDownloads_history.map(m => m.subscribers),
+            borderColor: '#FF7A59',
+            backgroundColor: 'rgba(255,122,89,0.1)',
+            fill: true,
+            tension: 0.35,
+            pointRadius: 5,
+            yAxisID: 'y1'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: { legend: { labels: { color: '#fff' } } },
+        scales: {
+          x: { ticks: { color: '#ccc' }, grid: { color: 'rgba(255,255,255,0.08)' } },
+          y: { type: 'linear', position: 'left', title: { display: true, text: 'Downloads', color: '#1DB954' }, ticks: { color: '#1DB954' }, grid: { color: 'rgba(255,255,255,0.08)' } },
+          y1: { type: 'linear', position: 'right', title: { display: true, text: 'Subscribers', color: '#FF7A59' }, ticks: { color: '#FF7A59' }, grid: { drawOnChartArea: false } }
+        }
+      }
+    });
     document.getElementById('podEpisodes').innerHTML = episodeTable(D.podcast.topEpisodes, 'Downloads', false);
 
     // ── Instagram ──────────────────────────────────────────
