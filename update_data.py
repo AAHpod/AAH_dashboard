@@ -195,7 +195,7 @@ def write_data_js(monthly, episodes, yt, hs_count, report_label):
     curr_fb      = _int(monthly.get(report_label, {}).get("Facebook Followers", 0))
     curr_li      = curr("LinkedIn Followers")
     total_pod    = sum(e["downloads"] for e in episodes)
-    top_eps      = sorted(episodes, key=lambda e: e["downloads"], reverse=True)[:5]
+    top_eps      = sorted(episodes, key=lambda e: e["downloads"], reverse=True)[:10]
     today_str    = date.today().strftime("%Y-%m-%d")
 
     try:
