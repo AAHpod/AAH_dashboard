@@ -176,7 +176,7 @@ def write_data_js(monthly, episodes, yt, hs_count, report_label):
 
     def _pod_subs(row):
         return (_int(row.get("Podcast Subscribers - Apple", 0))
-                + _int(row.get("Podcast Subscribers - Spotify ", 0))
+                + _int(row.get("Podcast Subscribers - Spotify ", 0)))
 
     yt_monthly  = [{"month": m, "views":     _int(monthly[m].get("YouTube Subscribers",      0))} for m in month_order]
     web_monthly = [{"month": m, "visitors":  _int(monthly[m].get("Website Visitors",         0))} for m in month_order]
