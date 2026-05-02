@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    /* ââ Reset & Base ââââââââââââââââââââââââââââââââââââââââ */
+    /* ── Reset & Base ──────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -39,7 +39,7 @@
       min-height: 100vh;
     }
 
-    /* ââ Header ââââââââââââââââââââââââââââââââââââââââââââââ */
+    /* ── Header ────────────────────────────────────────────── */
     .header {
       background: var(--black);
       padding: 20px 32px;
@@ -82,14 +82,14 @@
       border-radius: 20px;
     }
 
-    /* ââ Layout ââââââââââââââââââââââââââââââââââââââââââââââ */
+    /* ── Layout ────────────────────────────────────────────── */
     .container {
       max-width: 1400px;
       margin: 0 auto;
       padding: 32px 24px;
     }
 
-    /* ââ Summary Row âââââââââââââââââââââââââââââââââââââââââ */
+    /* ── Summary Row ───────────────────────────────────────── */
     .summary-row {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -161,7 +161,7 @@
     .growth-down { color: var(--red); }
     .growth-neutral { color: var(--gray-500); }
 
-    /* ââ Summary Group Labels âââââââââââââââââââââââââââââââ */
+    /* ── Summary Group Labels ─────────────────────────────── */
     .summary-group-label {
       font-size: 11px;
       font-weight: 800;
@@ -176,7 +176,7 @@
       margin-bottom: 24px;
     }
 
-    /* ââ Section Titles ââââââââââââââââââââââââââââââââââââââ */
+    /* ── Section Titles ────────────────────────────────────── */
     .section-title {
       font-size: 20px;
       font-weight: 900;
@@ -197,7 +197,7 @@
       background: var(--yellow);
     }
 
-    /* ââ Grid Sections âââââââââââââââââââââââââââââââââââââââ */
+    /* ── Grid Sections ─────────────────────────────────────── */
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -212,7 +212,7 @@
       margin-bottom: 40px;
     }
 
-    /* ââ Cards ââââââââââââââââââââââââââââââââââââââââââââââââ */
+    /* ── Cards ──────────────────────────────────────────────── */
     .card {
       background: var(--white);
       border-radius: var(--radius);
@@ -249,7 +249,7 @@
 
     .card-link:hover { text-decoration: underline; }
 
-    /* ââ Stat Rows âââââââââââââââââââââââââââââââââââââââââââ */
+    /* ── Stat Rows ─────────────────────────────────────────── */
     .stat-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -277,7 +277,7 @@
       color: var(--black);
     }
 
-    /* ââ Episode Table âââââââââââââââââââââââââââââââââââââââ */
+    /* ── Episode Table ─────────────────────────────────────── */
     .episode-table {
       width: 100%;
       border-collapse: collapse;
@@ -316,13 +316,13 @@
       color: var(--black);
     }
 
-    /* ââ Chart Container âââââââââââââââââââââââââââââââââââââ */
+    /* ── Chart Container ───────────────────────────────────── */
     .chart-wrap {
       position: relative;
       height: 220px;
     }
 
-    /* ââ Empty State âââââââââââââââââââââââââââââââââââââââââ */
+    /* ── Empty State ───────────────────────────────────────── */
     .empty-state {
       text-align: center;
       padding: 40px 20px;
@@ -340,7 +340,7 @@
       font-weight: 600;
     }
 
-    /* ââ Social Row ââââââââââââââââââââââââââââââââââââââââââ */
+    /* ── Social Row ────────────────────────────────────────── */
     .social-header-icon {
       width: 28px;
       height: 28px;
@@ -361,7 +361,7 @@
     .social-header-icon.fb  { background: #1877F2; }
     .social-header-icon.li  { background: #0A66C2; }
 
-    /* ââ Footer ââââââââââââââââââââââââââââââââââââââââââââââ */
+    /* ── Footer ────────────────────────────────────────────── */
     .footer {
       text-align: center;
       padding: 40px 20px 24px;
@@ -375,7 +375,7 @@
       font-weight: 700;
     }
 
-    /* ââ Pink Banner âââââââââââââââââââââââââââââââââââââââââ */
+    /* ── Pink Banner ───────────────────────────────────────── */
     .pink-banner {
       background: var(--pink);
       padding: 16px 32px;
@@ -391,7 +391,7 @@
       font-weight: 900;
     }
 
-    /* ââ Responsive ââââââââââââââââââââââââââââââââââââââââââ */
+    /* ── Responsive ────────────────────────────────────────── */
     @media (max-width: 1024px) {
       .grid-3 { grid-template-columns: 1fr 1fr; }
     }
@@ -410,8 +410,7 @@
   </style>
 </head>
 <body>
-
-  <!-- Header -->
+Socials  <!-- Header -->
   <header class="header">
     <div class="header-brand">
       <img src="Logo.png" alt="Accountants After Hours" class="header-logo-img">
@@ -429,14 +428,14 @@
 
   <div class="container">
 
-    <!-- ââ Summary Cards ââââââââââââââââââââââââââââââââââ -->
-    <h2 class="section-title">Overall Snapshot â All Time</h2>
+    <!-- ── Summary Cards ────────────────────────────────── -->
+    <h2 class="section-title">Overall Snapshot — All Time</h2>
     <div class="summary-group-label">Platforms</div>
     <div class="summary-row" id="summaryPlatforms"></div>
-    <div class="summary-group-label">Socials â Followers</div>
+    <div class="summary-group-label">Socials — Followers</div>
     <div class="summary-row" id="summarySocials"></div>
 
-    <!-- ââ Podcast Stats ââââââââââââââââââââââââââââââââââ -->
+    <!-- ── Podcast Stats ────────────────────────────────── -->
     <h2 class="section-title">Podcast</h2>
     <div class="grid-2">
       <div class="card">
@@ -460,7 +459,7 @@
       </div>
     </div>
 
-    <!-- ââ YouTube Section ââââââââââââââââââââââââââââââââ -->
+    <!-- ── YouTube Section ──────────────────────────────── -->
     <h2 class="section-title">YouTube</h2>
     <div class="grid-2">
       <div class="card">
@@ -505,7 +504,7 @@
       </div>
     </div>
 
-    <!-- ââ Website & HubSpot ââââââââââââââââââââââââââââââ -->
+    <!-- ── Website & HubSpot ────────────────────────────── -->
     <h2 class="section-title">Website & Email</h2>
     <div class="grid-2">
       <div class="card">
@@ -531,8 +530,8 @@
       </div>
     </div>
 
-    <!-- ââ Social Media âââââââââââââââââââââââââââââââââââ -->
-    <h2 class="section-title">Social Media â Followers</h2>
+    <!-- ── Social Media ─────────────────────────────────── -->
+    <h2 class="section-title">Social Media — Followers</h2>
     <div class="grid-3">
       <!-- Instagram -->
       <div class="card">
@@ -582,11 +581,11 @@
 
   <script src="data.js?v=5"></script>
   <script>
-    // ââ Helpers âââââââââââââââââââââââââââââââââââââââââââââ
+    // ── Helpers ─────────────────────────────────────────────
     const D = DASHBOARD_DATA;
     const fmt = (n) => typeof n === 'number' ? n.toLocaleString() : n;
 
-    // ââ Fetch live data from API server âââââââââââââââââââââ
+    // ── Fetch live data from API server ─────────────────────
     async function fetchLiveData() {
       try {
         const resp = await fetch('/api/all');
@@ -685,14 +684,14 @@
         html += `<tr>
           <td class="ep-title" title="${ep.title}">${ep.title}</td>
           <td class="ep-views">${fmt(ep.downloads || ep.views || 0)}</td>
-          ${showDate ? `<td>${ep.publishedDate || 'â'}</td>` : ''}
+          ${showDate ? `<td>${ep.publishedDate || '—'}</td>` : ''}
         </tr>`;
       });
       html += `</tbody></table>`;
       return html;
     }
 
-    // ââ Chart defaults âââââââââââââââââââââââââââââââââââââ
+    // ── Chart defaults ─────────────────────────────────────
     Chart.defaults.font.family = "'Montserrat', sans-serif";
     Chart.defaults.font.weight = 600;
 
@@ -742,13 +741,13 @@
       });
     }
 
-    // ââ Populate Header ââââââââââââââââââââââââââââââââââââ
+    // ── Populate Header ────────────────────────────────────
     document.getElementById('reportingMonth').textContent = D.reportingMonth;
     document.getElementById('lastUpdated').textContent = `Updated ${D.lastUpdated}`;
     document.getElementById('bannerMonth').textContent = D.reportingMonth;
     document.getElementById('footerDate').textContent = D.lastUpdated;
 
-    // ââ Summary Cards ââââââââââââââââââââââââââââââââââââââ
+    // ── Summary Cards ──────────────────────────────────────
     const platformCards = [
       { cls: 'website',   icon: '&#127760;', label: 'Website Visitors', value: D.website.monthlyVisitors.reduce((s,m) => s + m.visitors, 0),       growth: D.website.visitors },
       { cls: 'hubspot',   icon: '&#9993;',  label: 'Email Subs',       value: D.hubspot.subscribers,    growth: D.hubspot.subscriberGrowth },
@@ -777,7 +776,7 @@
     renderCards(document.getElementById('summaryPlatforms'), platformCards);
     renderCards(document.getElementById('summarySocials'), socialCards);
 
-    // ââ YouTube ââââââââââââââââââââââââââââââââââââââââââââ
+    // ── YouTube ────────────────────────────────────────────
     document.getElementById('ytLink').href = D.youtube.channelUrl;
     const _ytEps = D.youtube.episodes || [];
     const _ytSho = (D.youtube.shorts || []).slice().sort((a, b) => b.views - a.views);
@@ -805,7 +804,7 @@
       statBox('Avg/Episode', _ytEps.length ? Math.round(_epViews / _ytEps.length) : 0) +
       statBox('Avg/Short', _ytSho.length ? Math.round(_shViews / _ytSho.length) : 0);
 
-    // ââ Website ââââââââââââââââââââââââââââââââââââââââââââ
+    // ── Website ────────────────────────────────────────────
     document.getElementById('webStats').innerHTML =
       statBox('Visitors', D.website.visitors) +
       statBox('Growth', (D.website.visitorGrowth > 0 ? '+' : '') + D.website.visitorGrowth);
@@ -817,7 +816,7 @@
       '#C9A0DC', 'Visitors'
     );
 
-    // ââ HubSpot ââââââââââââââââââââââââââââââââââââââââââââ
+    // ── HubSpot ────────────────────────────────────────────
     document.getElementById('hsStats').innerHTML =
       statBox('Subscribers', D.hubspot.subscribers) +
       statBox('Growth', (D.hubspot.subscriberGrowth > 0 ? '+' : '') + D.hubspot.subscriberGrowth);
@@ -829,7 +828,7 @@
       '#FF7A59', 'Subscribers'
     );
 
-    // ââ Podcast ââââââââââââââââââââââââââââââââââââââââââââ
+    // ── Podcast ────────────────────────────────────────────
     document.getElementById('podStats').innerHTML =
       statBox('Total Downloads', D.podcast.totalDownloads) +
       statBox('This Month', D.podcast.monthlyDownloads);
@@ -842,7 +841,7 @@
       );
     document.getElementById('podEpisodes').innerHTML = episodeTable(D.podcast.topEpisodes, 'Downloads', false);
 
-    // ââ Instagram ââââââââââââââââââââââââââââââââââââââââââ
+    // ── Instagram ──────────────────────────────────────────
     document.getElementById('igLink').href = D.instagram.profileUrl;
     document.getElementById('igStats').innerHTML =
       statBox('Followers', D.instagram.followers) +
@@ -855,7 +854,7 @@
       '#DD2A7B', 'Followers'
     );
 
-    // ââ Facebook âââââââââââââââââââââââââââââââââââââââââââ
+    // ── Facebook ───────────────────────────────────────────
     document.getElementById('fbLink').href = D.facebook.profileUrl;
     document.getElementById('fbStats').innerHTML =
       statBox('Followers', D.facebook.followers) +
@@ -868,7 +867,7 @@
       '#1877F2', 'Followers'
     );
 
-    // ââ LinkedIn âââââââââââââââââââââââââââââââââââââââââââ
+    // ── LinkedIn ───────────────────────────────────────────
     document.getElementById('liLink').href = D.linkedin.profileUrl;
     document.getElementById('liStats').innerHTML =
       statBox('Followers', D.linkedin.followers) +
@@ -881,7 +880,7 @@
       '#0A66C2', 'Followers'
     );
 
-    // ââ Fetch live data (overlays on top of data.js) ââââââââ
+    // ── Fetch live data (overlays on top of data.js) ────────
     fetchLiveData();
   </script>
 </body>
