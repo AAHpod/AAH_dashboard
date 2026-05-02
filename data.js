@@ -322,31 +322,31 @@ const DASHBOARD_DATA = {
     totalDownloads: 1938,
     monthlyDownloads: 775,
     downloadGrowth: -388,
-    subscribers: 96,
-    subscriberGrowth: 22,
+    subscribers: 0,
+    subscriberGrowth: 0,
     topEpisodes: [
     {
-        "title": "The 2025 Wrap, the 2026 Energy",
+        "title": "1: The 2025 Wrap, the 2026 Energy",
         "downloads": 787
     },
     {
-        "title": "Will AI Take your Job?",
+        "title": "2: Will AI Take your Job?",
         "downloads": 351
     },
     {
-        "title": "Accountants v Bookkeepers",
+        "title": "5: Accountants v Bookkeepers",
         "downloads": 272
     },
     {
-        "title": "Bonus EP, AI already changed again",
+        "title": "3: Bonus EP, AI already changed again",
         "downloads": 255
     },
     {
-        "title": "Live from the Accounting & Business Expo",
+        "title": "4: Live from the Accounting & Business Expo",
         "downloads": 228
     },
     {
-        "title": "Tax Planning Made Simple",
+        "title": "6: Tax Planning Made Simple",
         "downloads": 45
     }
 ],
@@ -359,12 +359,12 @@ const DASHBOARD_DATA = {
     {
         "month": "Mar 2026",
         "downloads": 1163,
-        "subscribers": 74
+        "subscribers": 0
     },
     {
         "month": "Apr 2026",
         "downloads": 775,
-        "subscribers": 96
+        "subscribers": 0
     },
     {
         "month": "May 2026",
