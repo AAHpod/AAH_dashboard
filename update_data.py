@@ -285,7 +285,7 @@ const DASHBOARD_DATA = {{
 
 
 # ── Email HTML ────────────────────────────────────────────────────────────────
-def _delta(current, prev):
+def build_email_html(monthly, episodes, yt, hs_count, report_label):
     d = current - prev
     if d > 0:  return f'<span style="color:#22C55E;font-size:13px">&#9650; +{d:,}</span>'
     if d < 0:  return f'<span style="color:#EF4444;font-size:13px">&#9660; {d:,}</span>'
@@ -313,6 +313,7 @@ def build_email_html(monthly, episodes, yt, hs_count, report_label):
 
     sp = '<td width="5%"></td>'
     total_pod = sum(e["downloads"] for e in episodes)
+    total_web = sum(_int(monthly[m].get("Website Visitors", 0)) for m in month_order)
     ep_rows = "".join(
         f'<tr><td style="padding:10px 14px;border-bottom:1px solid #f0f0f0;font-size:13px">{e["title"]}</td>'
         f'<td style="padding:10px 14px;border-bottom:1px solid #f0f0f0;font-size:13px;font-weight:800;text-align:right">{e["downloads"]:,}</td></tr>'
@@ -337,10 +338,10 @@ def build_email_html(monthly, episodes, yt, hs_count, report_label):
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:12px"><tr>
       {card("YouTube Subs",     yt["subscribers"], _delta(yt["subscribers"], pv("YouTube Subscribers")))}
       {sp}{card("Email Subs", hs_count, _delta(hs_count, pv("Mailing List Subscribers")))}
-      {sp}{card("Website Visitors", cv("Website Visitors"), _delta(cv("Website Visitors"), pv("Website Visitors")))}
+      {sp}{card("Website Visitors", total_web, _delta(cv("Website Visitors"), 0)))}
     </tr></table>
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px"><tr>
-      {card("Podcast Downloads", cv("Podcast Downloads"), _delta(cv("Podcast Downloads"), pv("Podcast Downloads")))}
+      {card("Podcast Downloads", total_pod, _delta(cv("Podcast Downloads"), 0)))}
       {sp}{card("YouTube Total Views", yt["totalViews"])}
       {sp}<td width="30%"></td>
     </tr></table>
