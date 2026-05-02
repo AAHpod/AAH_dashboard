@@ -11,7 +11,7 @@ const DASHBOARD_DATA = {
   youtube: {
     subscribers: 44,
     subscriberGrowth: 44,
-    totalViews: 5545,
+    totalViews: 5556,
     channelUrl: "https://www.youtube.com/@AccountantsAfterHours",
     episodes: [
     {
@@ -44,7 +44,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Tax Planning Made Simple",
-        "views": 14,
+        "views": 17,
         "likes": 0,
         "publishedDate": "2026-04-29",
         "duration": 1780
@@ -102,7 +102,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Why accountants who only do compliance are falling behind (and what to do instead)",
-        "views": 109,
+        "views": 112,
         "likes": 0,
         "publishedDate": "2026-04-29",
         "duration": 60
