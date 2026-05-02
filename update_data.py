@@ -285,7 +285,7 @@ const DASHBOARD_DATA = {{
 
 
 # ── Email HTML ────────────────────────────────────────────────────────────────
-def build_email_html(monthly, episodes, yt, hs_count, report_label):
+def _delta(current, prev):
     d = current - prev
     if d > 0:  return f'<span style="color:#22C55E;font-size:13px">&#9650; +{d:,}</span>'
     if d < 0:  return f'<span style="color:#EF4444;font-size:13px">&#9660; {d:,}</span>'
