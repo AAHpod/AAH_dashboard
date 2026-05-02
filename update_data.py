@@ -176,7 +176,7 @@ def write_data_js(monthly, episodes, yt, hs_count, report_label):
 
     def _pod_subs(row):
         return (_int(row.get("Podcast Subscribers - Apple", 0))
-                + _int(row.get("Podcast Subscribers - Spotify ", 0)))
+                + _int(row.get("Podcast Subscribers - Spotify ", 0))
 
     yt_monthly  = [{"month": m, "views":     _int(monthly[m].get("YouTube Subscribers",      0))} for m in month_order]
     web_monthly = [{"month": m, "visitors":  _int(monthly[m].get("Website Visitors",         0))} for m in month_order]
@@ -338,10 +338,10 @@ def build_email_html(monthly, episodes, yt, hs_count, report_label):
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:12px"><tr>
       {card("YouTube Subs",     yt["subscribers"], _delta(yt["subscribers"], pv("YouTube Subscribers")))}
       {sp}{card("Email Subs", hs_count, _delta(hs_count, pv("Mailing List Subscribers")))}
-      {sp}{card("Website Visitors", total_web, _delta(cv("Website Visitors"), 0)))}
+      {sp}{card("Website Visitors", total_web, _delta(cv("Website Visitors"), 0))}
     </tr></table>
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px"><tr>
-      {card("Podcast Downloads", total_pod, _delta(cv("Podcast Downloads"), 0)))}
+      {card("Podcast Downloads", total_pod, _delta(cv("Podcast Downloads"), 0))}
       {sp}{card("YouTube Total Views", yt["totalViews"])}
       {sp}<td width="30%"></td>
     </tr></table>
