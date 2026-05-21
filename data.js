@@ -9,59 +9,59 @@ const DASHBOARD_DATA = {
   reportingMonth: "April 2026",
 
   youtube: {
-    subscribers: 68,
-    subscriberGrowth: 68,
-    totalViews: 7550,
+    subscribers: 70,
+    subscriberGrowth: 70,
+    totalViews: 7602,
     channelUrl: "https://www.youtube.com/@AccountantsAfterHours",
     episodes: [
     {
         "title": "Accountants vs Bookkeepers",
-        "views": 149,
+        "views": 150,
         "likes": 5,
         "publishedDate": "2026-04-15",
         "duration": 1672
     },
     {
         "title": "Accountants React to 2026 Federal Budget Tax Changes",
-        "views": 123,
-        "likes": 15,
+        "views": 143,
+        "likes": 16,
         "publishedDate": "2026-05-18",
         "duration": 2967
     },
     {
         "title": "Tax Planning Made Simple",
-        "views": 118,
+        "views": 123,
         "likes": 3,
         "publishedDate": "2026-04-29",
         "duration": 1780
     },
     {
         "title": "Bonus Ep AI Already Changed\u2026 Again",
-        "views": 101,
+        "views": 104,
         "likes": 7,
         "publishedDate": "2026-03-23",
         "duration": 1313
     },
     {
         "title": "The 2025 Wrap, the 2026 Energy",
-        "views": 83,
+        "views": 87,
         "likes": 7,
         "publishedDate": "2026-02-25",
         "duration": 2566
     },
     {
-        "title": "Will AI Take Your Job?",
-        "views": 70,
-        "likes": 3,
-        "publishedDate": "2026-03-10",
-        "duration": 2919
-    },
-    {
         "title": "Show Me the Money: Re-Engagements",
-        "views": 65,
+        "views": 72,
         "likes": 3,
         "publishedDate": "2026-05-06",
         "duration": 2806
+    },
+    {
+        "title": "Will AI Take Your Job?",
+        "views": 71,
+        "likes": 4,
+        "publishedDate": "2026-03-10",
+        "duration": 2919
     }
 ],
     shorts: [
@@ -74,7 +74,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "New service offering?",
-        "views": 1475,
+        "views": 1478,
         "likes": 6,
         "publishedDate": "2026-05-18",
         "duration": 24
@@ -123,7 +123,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Why accounting firms lose staff every June (and how to stop it)",
-        "views": 133,
+        "views": 135,
         "likes": 0,
         "publishedDate": "2026-05-10",
         "duration": 59
@@ -158,14 +158,14 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Not your typical accounting podcast. Definitely not LinkedIn safe.",
-        "views": 56,
+        "views": 59,
         "likes": 2,
         "publishedDate": "2026-03-08",
         "duration": 14
     },
     {
         "title": "The highest-value service you're probably undercharging for",
-        "views": 51,
+        "views": 54,
         "likes": 0,
         "publishedDate": "2026-05-06",
         "duration": 96
@@ -207,7 +207,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Bloopers",
-        "views": 11,
+        "views": 12,
         "likes": 0,
         "publishedDate": "2026-05-11",
         "duration": 23
