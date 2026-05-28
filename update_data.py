@@ -15,7 +15,7 @@ YOUTUBE_API_KEY    = os.environ.get("YOUTUBE_API_KEY", "")
 YOUTUBE_CHANNEL_ID = "UCddISEE5dB84mW4o8uDtkdw"
 HUBSPOT_TOKEN      = os.environ.get("HUBSPOT_TOKEN", "")
 SHEET_ID           = "1vRdlPTCv_i3sA-WBlheHDKvu6KNNCZri"
-SHEET_GID          = "1571762833"
+SHEET_GID          = "1302515591"
 
 BREVO_API_KEY = os.environ.get("BREVO_API_KEY", "")
 EMAIL_FROM_NAME  = "AAH Bot"
