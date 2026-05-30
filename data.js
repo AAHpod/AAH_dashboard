@@ -11,12 +11,12 @@ const DASHBOARD_DATA = {
   youtube: {
     subscribers: 82,
     subscriberGrowth: 82,
-    totalViews: 8606,
+    totalViews: 8629,
     channelUrl: "https://www.youtube.com/@AccountantsAfterHours",
     episodes: [
     {
         "title": "Accountants React to 2026 Federal Budget Tax Changes",
-        "views": 219,
+        "views": 222,
         "likes": 17,
         "publishedDate": "2026-05-18",
         "duration": 2967
