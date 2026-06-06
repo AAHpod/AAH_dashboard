@@ -11,12 +11,12 @@ const DASHBOARD_DATA = {
   youtube: {
     subscribers: 88,
     subscriberGrowth: 88,
-    totalViews: 9808,
+    totalViews: 10185,
     channelUrl: "https://www.youtube.com/@AccountantsAfterHours",
     episodes: [
     {
         "title": "Accountants React to 2026 Federal Budget Tax Changes",
-        "views": 242,
+        "views": 243,
         "likes": 18,
         "publishedDate": "2026-05-18",
         "duration": 2967
@@ -65,7 +65,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Growing your accounting firm in 2026",
-        "views": 22,
+        "views": 24,
         "likes": 3,
         "publishedDate": "2026-06-03",
         "duration": 1647
@@ -102,7 +102,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "How the proposed CGT change could make Australia uncompetitive (2026 Federal Budget breakdown)",
-        "views": 985,
+        "views": 991,
         "likes": 14,
         "publishedDate": "2026-06-03",
         "duration": 103
@@ -113,6 +113,13 @@ const DASHBOARD_DATA = {
         "likes": 4,
         "publishedDate": "2026-05-24",
         "duration": 49
+    },
+    {
+        "title": "Selling your business in Australia could cost a lot more after 2027 (2026 Federal Budget impact)",
+        "views": 450,
+        "likes": 1,
+        "publishedDate": "2026-06-06",
+        "duration": 77
     },
     {
         "title": "Not LinkedIn safe",
@@ -164,18 +171,18 @@ const DASHBOARD_DATA = {
         "duration": 45
     },
     {
+        "title": "Stop relying on referrals to grow your accounting firm",
+        "views": 104,
+        "likes": 0,
+        "publishedDate": "2026-06-03",
+        "duration": 82
+    },
+    {
         "title": "Are women in accounting seen as unapproachable?",
         "views": 102,
         "likes": 1,
         "publishedDate": "2026-03-02",
         "duration": 39
-    },
-    {
-        "title": "Stop relying on referrals to grow your accounting firm",
-        "views": 96,
-        "likes": 0,
-        "publishedDate": "2026-06-03",
-        "duration": 82
     },
     {
         "title": "Has anyone fully automated AP yet?",
@@ -239,13 +246,6 @@ const DASHBOARD_DATA = {
         "likes": 1,
         "publishedDate": "2026-04-19",
         "duration": 78
-    },
-    {
-        "title": "Selling your business in Australia could cost a lot more after 2027 (2026 Federal Budget impact)",
-        "views": 0,
-        "likes": 0,
-        "publishedDate": "2026-06-06",
-        "duration": 77
     }
 ],
     monthlyViews: [
