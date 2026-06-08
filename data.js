@@ -9,9 +9,9 @@ const DASHBOARD_DATA = {
   reportingMonth: "May 2026",
 
   youtube: {
-    subscribers: 91,
-    subscriberGrowth: 91,
-    totalViews: 11210,
+    subscribers: 92,
+    subscriberGrowth: 92,
+    totalViews: 11263,
     channelUrl: "https://www.youtube.com/@AccountantsAfterHours",
     episodes: [
     {
@@ -65,7 +65,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Growing your accounting firm in 2026",
-        "views": 25,
+        "views": 26,
         "likes": 3,
         "publishedDate": "2026-06-03",
         "duration": 1647
@@ -88,28 +88,28 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Would you let a client go for using AI?",
-        "views": 1155,
+        "views": 1159,
         "likes": 1,
         "publishedDate": "2026-03-25",
         "duration": 43
     },
     {
         "title": "The receipt rule bookkeepers keep getting wrong\u2026",
-        "views": 1042,
+        "views": 1045,
         "likes": 4,
         "publishedDate": "2026-04-27",
         "duration": 94
     },
     {
         "title": "How the proposed CGT change could make Australia uncompetitive (2026 Federal Budget breakdown)",
-        "views": 998,
-        "likes": 14,
+        "views": 1006,
+        "likes": 15,
         "publishedDate": "2026-06-03",
         "duration": 103
     },
     {
         "title": "What Australia's proposed increase to trust tax means for 240,000 small businesses",
-        "views": 956,
+        "views": 963,
         "likes": 20,
         "publishedDate": "2026-06-07",
         "duration": 101
@@ -123,8 +123,8 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Selling your business in Australia could cost a lot more after 2027 (2026 Federal Budget impact)",
-        "views": 491,
-        "likes": 7,
+        "views": 499,
+        "likes": 8,
         "publishedDate": "2026-06-06",
         "duration": 77
     },
@@ -137,7 +137,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "The cowboy accountant that got caught \ud83d\udc40",
-        "views": 233,
+        "views": 234,
         "likes": 0,
         "publishedDate": "2026-03-12",
         "duration": 55
@@ -151,7 +151,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "The admin job AI killed forever",
-        "views": 152,
+        "views": 155,
         "likes": 2,
         "publishedDate": "2026-03-29",
         "duration": 67
@@ -200,7 +200,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Not your typical accounting podcast. Definitely not LinkedIn safe.",
-        "views": 68,
+        "views": 70,
         "likes": 2,
         "publishedDate": "2026-03-08",
         "duration": 14
@@ -214,7 +214,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Should accountants build their own AI or wait for the software?",
-        "views": 48,
+        "views": 50,
         "likes": 0,
         "publishedDate": "2026-03-24",
         "duration": 47
@@ -228,7 +228,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "This is what accountants need to know about AI Agents in 2026",
-        "views": 29,
+        "views": 31,
         "likes": 1,
         "publishedDate": "2026-03-18",
         "duration": 69
