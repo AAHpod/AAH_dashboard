@@ -58,22 +58,22 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Will AI Take Your Job?",
-        "views": 73,
+        "views": 74,
         "likes": 4,
         "publishedDate": "2026-03-10",
         "duration": 2919
     },
     {
         "title": "Growing your accounting firm in 2026",
-        "views": 64,
+        "views": 67,
         "likes": 3,
         "publishedDate": "2026-06-03",
         "duration": 1647
     },
     {
         "title": "Mental Health in Accounting",
-        "views": 28,
-        "likes": 0,
+        "views": 40,
+        "likes": 1,
         "publishedDate": "2026-06-15",
         "duration": 1984
     }
@@ -109,7 +109,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "How the proposed CGT change could make Australia uncompetitive (2026 Federal Budget breakdown)",
-        "views": 1036,
+        "views": 1037,
         "likes": 16,
         "publishedDate": "2026-06-03",
         "duration": 103
@@ -148,6 +148,13 @@ const DASHBOARD_DATA = {
         "likes": 0,
         "publishedDate": "2026-03-12",
         "duration": 55
+    },
+    {
+        "title": "What working from home really does to your ability to switch off",
+        "views": 197,
+        "likes": 1,
+        "publishedDate": "2026-06-23",
+        "duration": 142
     },
     {
         "title": "The messaging audit every accounting firm needs to run",
