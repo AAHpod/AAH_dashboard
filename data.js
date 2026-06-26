@@ -11,7 +11,7 @@ const DASHBOARD_DATA = {
   youtube: {
     subscribers: 98,
     subscriberGrowth: 98,
-    totalViews: 12043,
+    totalViews: 12047,
     channelUrl: "https://www.youtube.com/@AccountantsAfterHours",
     episodes: [
     {
@@ -57,6 +57,13 @@ const DASHBOARD_DATA = {
         "duration": 2566
     },
     {
+        "title": "Growing your accounting firm in 2026",
+        "views": 74,
+        "likes": 3,
+        "publishedDate": "2026-06-03",
+        "duration": 1647
+    },
+    {
         "title": "Will AI Take Your Job?",
         "views": 74,
         "likes": 4,
@@ -64,15 +71,8 @@ const DASHBOARD_DATA = {
         "duration": 2919
     },
     {
-        "title": "Growing your accounting firm in 2026",
-        "views": 73,
-        "likes": 3,
-        "publishedDate": "2026-06-03",
-        "duration": 1647
-    },
-    {
         "title": "Mental Health in Accounting",
-        "views": 55,
+        "views": 68,
         "likes": 1,
         "publishedDate": "2026-06-15",
         "duration": 1984
@@ -109,14 +109,14 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "How the proposed CGT change could make Australia uncompetitive (2026 Federal Budget breakdown)",
-        "views": 1038,
-        "likes": 16,
+        "views": 1042,
+        "likes": 17,
         "publishedDate": "2026-06-03",
         "duration": 103
     },
     {
         "title": "What Australia's proposed increase to trust tax means for 240,000 small businesses",
-        "views": 983,
+        "views": 987,
         "likes": 20,
         "publishedDate": "2026-06-07",
         "duration": 101
@@ -143,13 +143,6 @@ const DASHBOARD_DATA = {
         "duration": 27
     },
     {
-        "title": "What working from home really does to your ability to switch off",
-        "views": 235,
-        "likes": 1,
-        "publishedDate": "2026-06-23",
-        "duration": 142
-    },
-    {
         "title": "The cowboy accountant that got caught \ud83d\udc40",
         "views": 234,
         "likes": 0,
@@ -157,8 +150,15 @@ const DASHBOARD_DATA = {
         "duration": 55
     },
     {
+        "title": "What working from home really does to your ability to switch off",
+        "views": 233,
+        "likes": 1,
+        "publishedDate": "2026-06-23",
+        "duration": 142
+    },
+    {
         "title": "The messaging audit every accounting firm needs to run",
-        "views": 174,
+        "views": 175,
         "likes": 0,
         "publishedDate": "2026-06-14",
         "duration": 88
@@ -228,7 +228,7 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Not your typical accounting podcast. Definitely not LinkedIn safe.",
-        "views": 75,
+        "views": 76,
         "likes": 2,
         "publishedDate": "2026-03-08",
         "duration": 14
