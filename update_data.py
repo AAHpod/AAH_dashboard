@@ -419,7 +419,7 @@ if __name__ == "__main__":
     print("Writing data.js...")
     write_data_js(monthly, episodes, yt, hs_count, report_label)
 
-    # Only email on the 2nd of the month (or next Monday if weekend)
+    # Only email on the 1st of the month (or next Monday if weekend)
     is_manual = os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch"
     if is_manual or should_run():
         print("Sending email...")
