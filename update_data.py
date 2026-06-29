@@ -36,11 +36,11 @@ except ImportError:
 
 # ── Is this the right day to run? ─────────────────────────────────────────────
 def should_run():
-    """Run on the 2nd, or next Monday if the 2nd is a weekend."""
+    """Run on the 1st, or next Monday if the 1st is a weekend."""
     today = date.today()
-    if today.day > 5:
+    if today.day > 4:
         return False
-    for d in range(2, 6):
+    for d in range(1, 5):
         try:
             candidate = today.replace(day=d)
         except ValueError:
