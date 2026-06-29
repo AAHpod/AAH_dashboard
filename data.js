@@ -23,14 +23,14 @@ const DASHBOARD_DATA = {
     },
     {
         "title": "Accountants vs Bookkeepers",
-        "views": 165,
+        "views": 166,
         "likes": 5,
         "publishedDate": "2026-04-15",
         "duration": 1672
     },
     {
         "title": "Tax Planning Made Simple",
-        "views": 146,
+        "views": 147,
         "likes": 3,
         "publishedDate": "2026-04-29",
         "duration": 1780
@@ -43,18 +43,18 @@ const DASHBOARD_DATA = {
         "duration": 1313
     },
     {
+        "title": "Mental Health in Accounting",
+        "views": 102,
+        "likes": 1,
+        "publishedDate": "2026-06-15",
+        "duration": 1984
+    },
+    {
         "title": "Show Me the Money: Re-Engagements",
         "views": 102,
         "likes": 4,
         "publishedDate": "2026-05-06",
         "duration": 2806
-    },
-    {
-        "title": "Mental Health in Accounting",
-        "views": 100,
-        "likes": 1,
-        "publishedDate": "2026-06-15",
-        "duration": 1984
     },
     {
         "title": "The 2025 Wrap, the 2026 Energy",
@@ -316,7 +316,7 @@ const DASHBOARD_DATA = {
     },
     {
         "month": "Jun 2026",
-        "views": 0
+        "views": 99
     },
     {
         "month": "Jul 2026",
@@ -368,7 +368,7 @@ const DASHBOARD_DATA = {
     },
     {
         "month": "Jun 2026",
-        "visitors": 0
+        "visitors": 93
     },
     {
         "month": "Jul 2026",
@@ -421,7 +421,7 @@ const DASHBOARD_DATA = {
     },
     {
         "month": "Jun 2026",
-        "count": 0
+        "count": 100
     },
     {
         "month": "Jul 2026",
@@ -452,7 +452,7 @@ const DASHBOARD_DATA = {
 
   podcast: {
     platform: "Acast",
-    totalDownloads: 2853,
+    totalDownloads: 3685,
     monthlyDownloads: 915,
     downloadGrowth: 140,
     subscribers: 0,
@@ -460,35 +460,43 @@ const DASHBOARD_DATA = {
     topEpisodes: [
     {
         "title": "1: The 2025 Wrap, the 2026 Energy",
-        "downloads": 836
+        "downloads": 875
     },
     {
         "title": "2: Will AI Take your Job?",
-        "downloads": 385
-    },
-    {
-        "title": "5: Accountants v Bookkeepers",
-        "downloads": 326
-    },
-    {
-        "title": "3: Bonus EP, AI already changed again",
-        "downloads": 284
+        "downloads": 412
     },
     {
         "title": "8: Accountants React to the 2026 Federal Budget",
-        "downloads": 281
+        "downloads": 412
     },
     {
-        "title": "4: Live from the Accounting & Business Expo",
-        "downloads": 250
+        "title": "5: Accountants v Bookkeepers",
+        "downloads": 370
     },
     {
         "title": "6: Tax Planning Made Simple",
-        "downloads": 249
+        "downloads": 314
+    },
+    {
+        "title": "3: Bonus EP, AI already changed again",
+        "downloads": 313
     },
     {
         "title": "7: Show me the money reengagemens",
-        "downloads": 242
+        "downloads": 292
+    },
+    {
+        "title": "4: Live from the Accounting & Business Expo",
+        "downloads": 271
+    },
+    {
+        "title": "9: Growing your firm in 2026",
+        "downloads": 245
+    },
+    {
+        "title": "10: Mental Health in Accounting",
+        "downloads": 181
     }
 ],
     monthlyDownloads_history: [
@@ -514,7 +522,7 @@ const DASHBOARD_DATA = {
     },
     {
         "month": "Jun 2026",
-        "downloads": 0,
+        "downloads": 832,
         "subscribers": 0
     },
     {
@@ -551,8 +559,8 @@ const DASHBOARD_DATA = {
   },
 
   instagram: {
-    followers: 0,
-    followerGrowth: -515,
+    followers: 750,
+    followerGrowth: 235,
     postsThisMonth: 0,
     reach: 0,
     impressions: 0,
@@ -573,11 +581,11 @@ const DASHBOARD_DATA = {
     },
     {
         "month": "May 2026",
-        "count": 0
+        "count": 750
     },
     {
         "month": "Jun 2026",
-        "count": 0
+        "count": 1221
     },
     {
         "month": "Jul 2026",
@@ -607,8 +615,8 @@ const DASHBOARD_DATA = {
   },
 
   facebook: {
-    followers: 0,
-    followerGrowth: -56,
+    followers: 65,
+    followerGrowth: 9,
     reach: 0,
     engagement: "0%",
     profileUrl: "https://www.facebook.com/accountantsafterhours",
@@ -627,11 +635,11 @@ const DASHBOARD_DATA = {
     },
     {
         "month": "May 2026",
-        "count": 0
+        "count": 65
     },
     {
         "month": "Jun 2026",
-        "count": 0
+        "count": 80
     },
     {
         "month": "Jul 2026",
@@ -661,8 +669,8 @@ const DASHBOARD_DATA = {
   },
 
   linkedin: {
-    followers: 0,
-    followerGrowth: -186,
+    followers: 190,
+    followerGrowth: 4,
     impressions: 0,
     engagement: "0%",
     profileUrl: "https://www.linkedin.com/company/accountantsafterhours",
@@ -681,11 +689,11 @@ const DASHBOARD_DATA = {
     },
     {
         "month": "May 2026",
-        "count": 0
+        "count": 190
     },
     {
         "month": "Jun 2026",
-        "count": 0
+        "count": 202
     },
     {
         "month": "Jul 2026",
